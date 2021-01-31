@@ -7,6 +7,7 @@ import * as d3Scale from 'd3-scale';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
 import * as d3Shape from "d3-shape";
+import { TextData } from '../models/textData.model';
 
 @Component({
   selector: 'app-country',
@@ -15,22 +16,16 @@ import * as d3Shape from "d3-shape";
 })
 export class CountryPage implements OnInit {
 
-  currentCountry: string;
+  currentCountry: string; // Is taken from the URL segment
 
-  textData: {
-    totalCases: string,
-    totalDeaths: string,
-    totalRecovered: string,
-    newCases: string,
-    newDeaths: string,
-    newRecovered: string
-  };
+  textData: TextData;
 
   graphData: {
     day: string,
     newCases: number
   }[];
 
+  // Graph variables
   width: number;
   height: number;
   margin = { top: 20, right: 40, bottom: 30, left: 60 };
@@ -40,10 +35,11 @@ export class CountryPage implements OnInit {
   y: any;
   line: d3Shape.Line<[number, number]>;
 
-  necessaryDataReturned = false;
-  noDataFound = false;
+  necessaryDataReturned = false; // Used to determine whether summary data has been loaded into component
+  noDataFound = false; // If the covid api doesn't have the data or it returns an error
 
   constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService) { 
+    // set graph dimensions
     this.width = 900 - this.margin.left - this.margin.right;
     this.height = 500 - this.margin.top - this.margin.bottom;
   }
@@ -57,10 +53,8 @@ export class CountryPage implements OnInit {
     try {
      
       country = await this.apiService.findCountryInSummary(this.currentCountry);
-
       this.necessaryDataReturned = true;
       
-
       this.textData  = { 
         totalCases: this.numberWithCommas(country['TotalConfirmed']),
         totalDeaths: this.numberWithCommas(country['TotalDeaths']),
@@ -69,9 +63,6 @@ export class CountryPage implements OnInit {
         newDeaths: this.numberWithCommas(country['NewDeaths']),
         newRecovered: this.numberWithCommas(country['NewRecovered'])
       }
-
-      console.log(country);
-      console.log(this.textData);
 
       await this.initialiseGraph();
 
@@ -116,14 +107,6 @@ export class CountryPage implements OnInit {
       .attr('class', 'axis axis--y')
       .call(d3Axis.axisLeft(this.y))
       .attr('font-size', '14');
-      // .append('text')
-      // .attr('class', 'axis-title')
-      // .attr('transform', 'rotate(-90)')
-      // .attr('y', 6)
-      // .attr('dy', '0.71em')
-      // .attr('text-anchor', 'end')
-      // .attr('fill', 'rgb(34, 167, 240)')
-      // .attr('font-size', '24');
 
     // Draw chart
     this.g.selectAll('.scatter-dots')
@@ -137,23 +120,7 @@ export class CountryPage implements OnInit {
     .attr('width', this.x.bandwidth())
     .attr('height', (d) => this.height - this.y(d.newCases))
     .attr('transform', 'translate(50,0)')
-    .attr("r", 5);
-
-    // Add the line
-    this.svg.append("line")
-    .data(this.graphData)
-    .enter()
-    .append("line")
-    .attr("fill", "none")
-    .attr("stroke", "steelblue")
-    .attr("stroke-width", 1.5)
-    .attr("x", (d) =>  this.x(d.day))
-    .attr("y", (d) => this.y(d.newCases))
-    // .attr("d", d3Shape.line()
-    //   .x((d) => this.x(d.day))
-    //   .y((d) => this.y(d.newCases))
-    //   )
-
+    .attr("r", 10);
 
   }
 

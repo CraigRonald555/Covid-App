@@ -22,8 +22,6 @@ export class SearchPage implements OnInit {
 
     this.countriesList = this.apiService.countriesList;
 
-    console.log(this.countriesList);
-
   }
 
 }

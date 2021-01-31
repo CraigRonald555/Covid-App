@@ -5,6 +5,7 @@ import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
+import { TextData } from '../models/textData.model';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +14,7 @@ import * as d3Axis from 'd3-axis';
 })
 export class HomePage implements OnInit {
 
-  textData: {
-    totalCases: string,
-    totalDeaths: string,
-    totalRecovered: string,
-    newCases: string,
-    newDeaths: string,
-    newRecovered: string
-  }
+  textData: TextData
 
   graphData: {
     country: string,
@@ -35,10 +29,11 @@ export class HomePage implements OnInit {
   x: any;
   y: any;
 
-  //Prevents console logging undefined while the app waits for data from the api
-  necessaryDataReturned = false;
+  
+  necessaryDataReturned = false; //Prevents console logging undefined while the app waits for data from the api
 
   constructor(private apiService: ApiService) {
+    // set graph dimensions
     this.width = 900 - this.margin.left - this.margin.right;
     this.height = 500 - this.margin.top - this.margin.bottom;
   }
@@ -96,14 +91,6 @@ export class HomePage implements OnInit {
       .attr('class', 'axis axis--y')
       .call(d3Axis.axisLeft(this.y))
       .attr('font-size', '14')
-      // .append('text')
-      // .attr('class', 'axis-title')
-      // .attr('transform', 'rotate(-90)')
-      // .attr('y', 6)
-      // .attr('dy', '0.71em')
-      // .attr('text-anchor', 'end')
-      // .attr('fill', 'rgb(34, 167, 240)')
-      // .attr('font-size', '14');
 
       // Draw chart
       this.g.selectAll('.bar')
