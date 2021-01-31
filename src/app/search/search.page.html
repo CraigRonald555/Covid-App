@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Countries</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Search filter resource: https://www.positronx.io/how-to-build-list-filtering-and-searching-in-ionic/ -->
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="filterTerm"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-list>
+    <ion-item *ngFor="let country of countriesList | filter:filterTerm" detail routerLink="../country/{{country.Country}}">
+      <ion-label >{{country.Country}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

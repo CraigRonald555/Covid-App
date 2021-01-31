@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" [innerHTML]="currentCountry"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div id="lineChart"></div>
+
+  <ng-container *ngIf="noDataFound">
+    Sorry, we couldn't find specific covid data related to this country. Please check again at a later date
+  </ng-container>
+
+   <!-- Use ngIf to prevent the ionic trying to load data values which haven't been retrieved from api yet -->
+   <ng-container *ngIf="necessaryDataReturned && !noDataFound">
+
+    <ion-row class="ion-margin border">
+      <ion-col class="ion-text-center">
+        <p>Total Cases</p>
+        <p [innerText]="textData.totalCases"></p>
+      </ion-col>
+
+      <ion-col class="ion-text-center">
+        <p>New Cases</p>
+        <p [innerText]="textData.newCases"></p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin border">
+      
+      <ion-col class="ion-text-center">
+        <p>Total Deaths</p>
+        <ion-text color="danger">
+          <p [innerText]="textData.totalDeaths"></p>
+        </ion-text>
+      </ion-col>
+
+      <ion-col class="ion-text-center">
+        <p>New Deaths</p>
+
+        <ion-text color="danger">
+          <p [innerText]="textData.newDeaths"></p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin border">
+      <ion-col class="ion-text-center">
+        <p>Total Recovered</p>
+
+        <ion-text color="success">
+          <p [innerText]="textData.totalRecovered"></p>
+        </ion-text>
+      </ion-col>
+
+      <ion-col class="ion-text-center">
+        <p>New Recovered</p>
+        <ion-text color="success">
+          <p [innerText]="textData.newRecovered"></p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+  </ng-container>
+
+</ion-content>
