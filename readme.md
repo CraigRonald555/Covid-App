@@ -24,5 +24,7 @@ I was going to create a generic data type for holding graph data, however, as th
 
 ## Summary
 
-I am happy with the way the app turned out, although there 
+I am happy with the way the app turned out. Although I hadn't used ionic, d3 graphs or andorid studio before, I was confident in my approach to break the app down into useful components and services - making it easier to understand what needed to be done and where. 
+
+Once I had a structure and developed an understanding of the covid api, I was able to create the views, and display the text data fairly quickly. I'd say the biggest struggle came from the d3 chart formatting, it took me a while to gain an understanding of how the library worked in order to create a graph which displayed the data effectively.
 
