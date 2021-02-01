@@ -28,7 +28,7 @@ I was going to create a generic data type for holding graph data, however, as th
 
 I'd say the biggest struggle of developing the app came from the d3 chart formatting, and it took me a while to gain an understanding of how the library works.
 
-I think the app could be improved once I gain a further understanding of d3 - the text can appear quite small as it's difficult to scale from device-to-device. I also wanted to have a line going from each point in the country graph but decided that the current solution was sufficient after trying multiple different solutions to no avail.
+I think the app could be improved once I gain a further understanding of d3 - the text can appear quite small on mobile screens, and the graph can become a bit tall on PC screens as it's difficult to scale from device-to-device. I also wanted to have a line going from each point in the country graph but decided that the current solution was sufficient after trying multiple different solutions to no avail.
 
 That being said, I am happy with how the app turned out. Although I hadn't used ionic, d3 graphs or andorid studio before, I was confident in my approach to break the app down into useful components and services - making it easier to understand what needed to be done and where. 
 
