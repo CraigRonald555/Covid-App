@@ -46,6 +46,7 @@ export class ApiService {
 
   }
 
+  // Returns the top five countries with highest new cases
   async findHighestNewCases() {
 
     // Make sure summary has been retrieved
@@ -72,6 +73,7 @@ export class ApiService {
 
   }
 
+  // Returns country object from summary (useful for text data.. total and new for: cases/deaths/recovered)
   async findCountryInSummary(countryName: string) {
 
     // Make sure summary has been retrieved
