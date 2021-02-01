@@ -12,13 +12,22 @@ Also if using the web version... due to an issue between github pages and angula
 
 ## Components
 
+* home
+* search
+* country 
+
 Each component in the /app directory represents a page within the app. There are three components: home, search and country. These are used to add components from ionic and display data returned from the api service 
 
 ## Service
 
+* api service
+
 The api service is used to communicate the covid api, each component uses this service to retrieve data by calling methods depending on what data is required.
 
 ## Models
+
+* country
+* textData
 
 There are two model data types: country & textData. country is used to store data from the covid api's /countries endpoint, this data is then used in the search list. textData holds the total and new data for cases, deaths and recoveries - this is the data which is shown in text format on the main page, and the country page.
 
