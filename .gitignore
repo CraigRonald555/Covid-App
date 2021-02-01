@@ -30,4 +30,4 @@ npm-debug.log*
 /plugins
 /www
 /android
-!/android/app/build/outputs/apk/release
+# !/android/app/build/outputs/apk/release/app-release-unsigned.apk
